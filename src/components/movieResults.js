@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class MovieResults extends Component {
   render() {
@@ -6,4 +7,8 @@ class MovieResults extends Component {
   }
 }
 
-export default MovieResults;
+function mapStateToProps(state) {
+  console.log(state);
+  return {};
+}
+export default connect()(MovieResults);

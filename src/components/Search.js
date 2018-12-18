@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap";
 
 import { API_KEY } from "./../secrets";
+import { movies } from "../actions";
+import { connect } from "react-redux";
 
 class Search extends Component {
   constructor(props) {
@@ -30,7 +32,9 @@ class Search extends Component {
       method: "GET"
     })
       .then(response => response.json())
-      .then(result => console.log(result));
+      .then(jsonObj => {
+        this.props.movies(jsonObj.results);
+      });
   }
 
   render() {
@@ -55,4 +59,7 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect(
+  null,
+  { movies }
+)(Search);
