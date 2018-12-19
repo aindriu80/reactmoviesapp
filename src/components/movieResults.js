@@ -1,14 +1,29 @@
 import React, { Component } from "react";
+import Search from "./Search";
 import { connect } from "react-redux";
+import MovieItem from "./MovieItem";
 
 class MovieResults extends Component {
   render() {
-    return <h1>Movie Results will go here!</h1>;
+    return (
+      <div>
+        <h1>Movie Results will go here!</h1>
+        <Search />
+        {this.props.movies.map(item => {
+          return <MovieItem movie={item} key={item.id} />;
+        })}
+      </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
   console.log(state);
-  return {};
+  return {
+    movies: state.movies
+  };
 }
-export default connect()(MovieResults);
+export default connect(
+  mapStateToProps,
+  null
+)(MovieResults);

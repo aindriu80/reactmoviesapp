@@ -13,7 +13,6 @@ class App extends Component {
           </div>
           <div className="row text-left">
             <MovieResults />
-            <Search />
           </div>
         </div>
       </div>
