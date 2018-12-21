@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
 import { addToFavorite, movies } from "../actions";
 import { connect } from "react-redux";
@@ -37,7 +38,8 @@ class MovieItem extends Component {
           className=""
           onClick={() => this.setState({ favorited: !this.state.favorited })}
         >
-          <FontAwesomeIcon icon={["far fas-star"]} />
+          {/* <FontAwesomeIcon icon={["far fas-star"]} />
+          <FontAwesomeIcon icon={["far far-star"]} /> */}
         </span>
       );
     }
@@ -58,7 +60,9 @@ class MovieItem extends Component {
                 <span className="badge badge-default">
                   {this.props.movie.vote_average}
                 </span>
-                <FontAwesomeIcon icon={["fas", "fa-star"]} />
+
+                <FontAwesomeIcon icon={fasHeart} />
+                <FontAwesomeIcon icon={farHeart} />
               </span>
             </p>
             <p>
