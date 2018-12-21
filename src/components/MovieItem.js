@@ -1,11 +1,28 @@
 import React, { Component } from "react";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+
+import { addToFavorite, movies } from "../actions";
+import { connect } from "react-redux";
 
 const urlComponent = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/";
 
 class MovieItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      favorited: false
+    };
+  }
+
+  addToFavorite() {
+    this.setState({ favorited: !this.state.favorited });
+    this.props.addToFavorite(this.props.movie);
+  }
   displayFav() {
     if (!this.state.favorited) {
       return (
@@ -15,10 +32,18 @@ class MovieItem extends Component {
         />
       );
     } else {
-      return <span className="glyphicon glypicon-heart" />;
+      return (
+        <span
+          className=""
+          onClick={() => this.setState({ favorited: !this.state.favorited })}
+        >
+          <FontAwesomeIcon icon={["far fas-star"]} />
+        </span>
+      );
     }
   }
   render() {
+    console.log(this.props);
     return (
       <div className="col-sm-12 col-sm-3">
         <div className="thumbnail">
@@ -33,6 +58,7 @@ class MovieItem extends Component {
                 <span className="badge badge-default">
                   {this.props.movie.vote_average}
                 </span>
+                <FontAwesomeIcon icon={["fas", "fa-star"]} />
               </span>
             </p>
             <p>
@@ -45,4 +71,7 @@ class MovieItem extends Component {
   }
 }
 
-export default MovieItem;
+export default connect(
+  null,
+  { addToFavorite }
+)(MovieItem);
