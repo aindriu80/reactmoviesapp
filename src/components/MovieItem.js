@@ -24,23 +24,23 @@ class MovieItem extends Component {
     this.setState({ favorited: !this.state.favorited });
     this.props.addToFavorite(this.props.movie);
   }
+
+  removeFromFavorite() {
+    this.setState({ favorited: !this.state.favorited });
+    this.props.removeFromFavorite(this.props.movie);
+  }
+
   displayFav() {
     if (!this.state.favorited) {
       return (
-        <span
-          className=""
-          onClick={() => this.setState({ favorited: !this.state.favorited })}
-        />
+        <FontAwesomeIcon icon={farHeart} onClick={() => this.addToFavorite()} />
       );
     } else {
       return (
-        <span
-          className=""
-          onClick={() => this.setState({ favorited: !this.state.favorited })}
-        >
-          {/* <FontAwesomeIcon icon={["far fas-star"]} />
-          <FontAwesomeIcon icon={["far far-star"]} /> */}
-        </span>
+        <FontAwesomeIcon
+          icon={fasHeart}
+          onClick={() => this.removeFromFavorite()}
+        />
       );
     }
   }
@@ -60,14 +60,9 @@ class MovieItem extends Component {
                 <span className="badge badge-default">
                   {this.props.movie.vote_average}
                 </span>
-
-                <FontAwesomeIcon icon={fasHeart} />
-                <FontAwesomeIcon icon={farHeart} />
               </span>
             </p>
-            <p>
-              <i className="fa fa-heart" />
-            </p>
+            <p>{this.displayFav()}</p>
           </div>
         </div>
       </div>
