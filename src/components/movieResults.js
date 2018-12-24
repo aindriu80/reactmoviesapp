@@ -12,7 +12,7 @@ class MovieResults extends Component {
         <hr />
         <Search />
         {this.props.movies.map(item => {
-          return <MovieItem movie={item} key={item.id} />;
+          return <MovieItem movie={item} key={item.id} showButton={true} />;
         })}
       </div>
     );

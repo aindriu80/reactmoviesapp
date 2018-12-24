@@ -10,7 +10,7 @@ class FavoriteMovieList extends Component {
       <div>
         <h4>My favorite Movies</h4>
         {this.props.favorites.map(movie => {
-          return <MovieItem movie={movie} key={movie.id} />;
+          return <MovieItem movie={movie} key={movie.id} showButton={false} />;
         })}
       </div>
     );

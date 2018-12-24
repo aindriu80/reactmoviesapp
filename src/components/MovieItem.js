@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
-import { addToFavorite, movies } from "../actions";
+import { addToFavorite, removeFromFavorite } from "../actions";
 import { connect } from "react-redux";
 
 const urlComponent = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/";
@@ -45,7 +45,7 @@ class MovieItem extends Component {
     }
   }
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="col-sm-12 col-sm-3">
         <div className="thumbnail">
@@ -62,7 +62,7 @@ class MovieItem extends Component {
                 </span>
               </span>
             </p>
-            <p>{this.displayFav()}</p>
+            <p>{this.props.showButton ? this.displayFav() : null}</p>
           </div>
         </div>
       </div>
@@ -72,5 +72,5 @@ class MovieItem extends Component {
 
 export default connect(
   null,
-  { addToFavorite }
+  { addToFavorite, removeFromFavorite }
 )(MovieItem);
