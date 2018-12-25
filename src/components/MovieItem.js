@@ -10,7 +10,7 @@ import { addToFavorite, removeFromFavorite } from "../actions";
 import { connect } from "react-redux";
 
 const urlComponent = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/";
-
+const movieUrl = "https://www.themoviedb.org/movie/";
 class MovieItem extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +49,12 @@ class MovieItem extends Component {
     return (
       <div className="col-sm-12 col-sm-3">
         <div className="thumbnail">
-          <img src={urlComponent + this.props.movie.poster_path} alt="..." />
+          <a href={movieUrl + this.props.movie.id} target="_blank">
+            <img
+              src={urlComponent + this.props.movie.poster_path}
+              alt={this.props.movie.title + "Image"}
+            />
+          </a>
           <div className="caption">
             <h3>{this.props.movie.title}</h3>
             <p>{this.props.movie.overview}</p>
